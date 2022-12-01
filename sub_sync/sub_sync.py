@@ -1,9 +1,11 @@
 import argparse
-from hashlib import md5
 import logging
 import os
 import subprocess
+from hashlib import md5
 from typing import List, Optional, Set, Tuple
+
+from sub_sync import __version__
 
 
 def extend_list_from_env(base_list: List[str], env_key: str) -> None:
@@ -168,5 +170,6 @@ def main() -> None:
         default=os.environ.get("SYNC_DIRS"),
         help="sync subtile in dirs",
     )
+    parser.add_argument("--version", action="version", version=__version__)
     args = parser.parse_args()
     sync_sub_on_dirs(args.dirs)
